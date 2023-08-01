@@ -56,10 +56,14 @@ export const web3Modal = new Web3Modal(
 
   // End of web3Modal
 
+  const response = await fetch('./saleABI.json')
+  const ABI = await response.json();
+  let contractAddress = "0x9103894A1a138d23ebD4D0ff636a14e640B5d02E"
 
-  async function setPaused(isPaused) {
+
+  window.setPaused = async function setPaused(isPaused) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setPaused',
     args: [isPaused],
@@ -68,9 +72,9 @@ export const web3Modal = new Web3Modal(
   console.log(data);
 }
 
-async function changeOwner(newOwner) {
+window.changeOwner = async function changeOwner(newOwner) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'changeOwner',
     args: [newOwner],
@@ -79,9 +83,9 @@ async function changeOwner(newOwner) {
   console.log(data);
 }
 
-async function setTokenAllowDisallow(paymentToken, state) {
+window.setTokenAllowDisallow = async function setTokenAllowDisallow(paymentToken, state) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setTokenAllowDisallow',
     args: [paymentToken, state],
@@ -90,9 +94,9 @@ async function setTokenAllowDisallow(paymentToken, state) {
   console.log(data);
 }
 
-async function changePrice(newPrice) {
+window.changePrice = async function changePrice(newPrice) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'changePrice',
     args: [newPrice],
@@ -101,9 +105,9 @@ async function changePrice(newPrice) {
   console.log(data);
 }
 
-async function setUSDT(USDT) {
+window.setUSDT = async function setUSDT(USDT) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setUSDT',
     args: [USDT],
@@ -112,9 +116,9 @@ async function setUSDT(USDT) {
   console.log(data);
 }
 
-async function setUSDC(USDC) {
+window.setUSDC = async function setUSDC(USDC) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setUSDC',
     args: [USDC],
@@ -123,9 +127,9 @@ async function setUSDC(USDC) {
   console.log(data);
 }
 
-async function setBUSD(BUSD) {
+window.setBUSD = async function setBUSD(BUSD) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setBUSD',
     args: [BUSD],
@@ -134,9 +138,9 @@ async function setBUSD(BUSD) {
   console.log(data);
 }
 
-async function setTUSD(TUSD) {
+window.setTUSD = async function setTUSD(TUSD) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setTUSD',
     args: [TUSD],
@@ -145,9 +149,9 @@ async function setTUSD(TUSD) {
   console.log(data);
 }
 
-async function setSaleReceiver(saleReceiver) {
+window.setSaleReceiver = async function setSaleReceiver(saleReceiver) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setSaleReceiver',
     args: [saleReceiver],
@@ -156,9 +160,9 @@ async function setSaleReceiver(saleReceiver) {
   console.log(data);
 }
 
-async function setbigDaddy(bigDaddy) {
+window.setbigDaddy = async function setbigDaddy(bigDaddy) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'setbigDaddy',
     args: [bigDaddy],
@@ -167,9 +171,9 @@ async function setbigDaddy(bigDaddy) {
   console.log(data);
 }
 
-async function changeNormalPercentage(newPercentage) {
+window.changeNormalPercentage = async function changeNormalPercentage(newPercentage) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'changeNormalPercentage',
     args: [newPercentage],
@@ -178,20 +182,9 @@ async function changeNormalPercentage(newPercentage) {
   console.log(data);
 }
 
-async function buyWithReferral(referrer, paymentToken, amount) {
+window.generateReferralLinkSpecial = async function generateReferralLinkSpecial(referrer, percentage) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
-    abi: ABI,
-    functionName: 'buyWithReferral',
-    args: [referrer, paymentToken, amount],
-  });
-
-  console.log(data);
-}
-
-async function generateReferralLinkSpecial(referrer, percentage) {
-  const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'generateReferralLinkSpecial',
     args: [referrer, percentage],
@@ -200,9 +193,9 @@ async function generateReferralLinkSpecial(referrer, percentage) {
   console.log(data);
 }
 
-async function changeReferrerPercentage(referrer, newPercentage) {
+window.changeReferrerPercentage = async function changeReferrerPercentage(referrer, newPercentage) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'changeReferrerPercentage',
     args: [referrer, newPercentage],
@@ -211,9 +204,9 @@ async function changeReferrerPercentage(referrer, newPercentage) {
   console.log(data);
 }
 
-async function getReferrersWithPercentage() {
+window.getReferrersWithPercentage = async function getReferrersWithPercentage() {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'getReferrersWithPercentage',
     args: [],
@@ -222,9 +215,9 @@ async function getReferrersWithPercentage() {
   console.log(data);
 }
 
-async function getAllBuyers(fromIndex, toIndex) {
+window.getAllBuyers = async function getAllBuyers(fromIndex, toIndex) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'getAllBuyers',
     args: [fromIndex, toIndex],
@@ -233,9 +226,9 @@ async function getAllBuyers(fromIndex, toIndex) {
   console.log(data);
 }
 
-async function _buyersCount() {
+window._buyersCount = async function _buyersCount() {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: '_buyersCount',
     args: [],
@@ -244,9 +237,9 @@ async function _buyersCount() {
   console.log(data);
 }
 
-async function getReferralTree(_address, _depth) {
+window.getReferralTree = async function getReferralTree(_address, _depth) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'getReferralTree',
     args: [_address, _depth],
@@ -255,9 +248,9 @@ async function getReferralTree(_address, _depth) {
   console.log(data);
 }
 
-async function getReferrerInfo(_referrer) {
+window.getReferrerInfo = async function getReferrerInfo(_referrer) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'getReferrerInfo',
     args: [_referrer],
@@ -266,9 +259,9 @@ async function getReferrerInfo(_referrer) {
   console.log(data);
 }
 
-async function _getBuyersAmounts(_referrer, buyersList) {
+window._getBuyersAmounts = async function _getBuyersAmounts(_referrer, buyersList) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: '_getBuyersAmounts',
     args: [_referrer, buyersList],
@@ -277,9 +270,9 @@ async function _getBuyersAmounts(_referrer, buyersList) {
   console.log(data);
 }
 
-async function _getBuyerRewards(_referrer, buyersList) {
+window._getBuyerRewards = async function _getBuyerRewards(_referrer, buyersList) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: '_getBuyerRewards',
     args: [_referrer, buyersList],
@@ -288,9 +281,9 @@ async function _getBuyerRewards(_referrer, buyersList) {
   console.log(data);
 }
 
-async function getBuyerInfo(_buyer) {
+window.getBuyerInfo = async function getBuyerInfo(_buyer) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'getBuyerInfo',
     args: [_buyer],
@@ -299,9 +292,9 @@ async function getBuyerInfo(_buyer) {
   console.log(data);
 }
 
-async function getBuyerInfoForReferrer(_referrer, _buyer) {
+window.getBuyerInfoForReferrer = async function getBuyerInfoForReferrer(_referrer, _buyer) {
   const data = await readContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'getBuyerInfoForReferrer',
     args: [_referrer, _buyer],
@@ -310,9 +303,9 @@ async function getBuyerInfoForReferrer(_referrer, _buyer) {
   console.log(data);
 }
 
-async function changeReferrer(oldReferrer, newReferrer) {
+window.changeReferrer = async function changeReferrer(oldReferrer, newReferrer) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'changeReferrer',
     args: [oldReferrer, newReferrer],
@@ -321,9 +314,9 @@ async function changeReferrer(oldReferrer, newReferrer) {
   console.log(data);
 }
 
-async function withdrawTokens(_token, _to, _amount) {
+window.withdrawTokens = async function withdrawTokens(_token, _to, _amount) {
   const data = await writeContract({
-    address: '0x508e24dAF923782Ba8630D197C30F2d92b9CC130',
+    address: contractAddress,
     abi: ABI,
     functionName: 'withdrawTokens',
     args: [_token, _to, _amount],
