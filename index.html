@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Contract Interaction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-group input {
+            margin-top: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <w3m-core-button></w3m-core-button>
+    <div class="container">
+        <!-- Set Paused -->
+<div class="form-group">
+    <label for="isPaused">Set Paused:</label>
+    <input type="text" id="isPaused" placeholder="Enter true or false">
+    <button onclick="setPaused(document.getElementById('isPaused').value)">Submit</button>
+</div>
+
+<!-- Change Owner -->
+<div class="form-group">
+    <label for="newOwner">Change Owner:</label>
+    <input type="text" id="newOwner" placeholder="Enter new owner address">
+    <button onclick="changeOwner(document.getElementById('newOwner').value)">Submit</button>
+</div>
+
+<!-- Set Token Allow Disallow -->
+<div class="form-group">
+    <label for="paymentToken">Set Token Allow Disallow:</label>
+    <input type="text" id="paymentToken" placeholder="Enter payment token address">
+    <input type="text" id="state" placeholder="Enter state (true or false)">
+    <button onclick="setTokenAllowDisallow(document.getElementById('paymentToken').value, document.getElementById('state').value)">Submit</button>
+</div>
+
+<!-- Change Price -->
+<div class="form-group">
+    <label for="newPrice">Change Price:</label>
+    <input type="text" id="newPrice" placeholder="Enter new price">
+    <button onclick="changePrice(document.getElementById('newPrice').value)">Submit</button>
+</div>
+
+<!-- Set USDT -->
+<div class="form-group">
+    <label for="usdtAddress">Set USDT:</label>
+    <input type="text" id="usdtAddress" placeholder="Enter USDT address">
+    <button onclick="setUSDT(document.getElementById('usdtAddress').value)">Submit</button>
+</div>
+
+<!-- Set USDC -->
+<div class="form-group">
+    <label for="usdcAddress">Set USDC:</label>
+    <input type="text" id="usdcAddress" placeholder="Enter USDC address">
+    <button onclick="setUSDC(document.getElementById('usdcAddress').value)">Submit</button>
+</div>
+
+<!-- Set BUSD -->
+<div class="form-group">
+    <label for="busdAddress">Set BUSD:</label>
+    <input type="text" id="busdAddress" placeholder="Enter BUSD address">
+    <button onclick="setBUSD(document.getElementById('busdAddress').value)">Submit</button>
+</div>
+
+<!-- Set TUSD -->
+<div class="form-group">
+    <label for="tusdAddress">Set TUSD:</label>
+    <input type="text" id="tusdAddress" placeholder="Enter TUSD address">
+    <button onclick="setTUSD(document.getElementById('tusdAddress').value)">Submit</button>
+</div>
+
+<!-- Set Sale Receiver -->
+<div class="form-group">
+    <label for="saleReceiver">Set Sale Receiver:</label>
+    <input type="text" id="saleReceiver" placeholder="Enter sale receiver address">
+    <button onclick="setSaleReceiver(document.getElementById('saleReceiver').value)">Submit</button>
+</div>
+
+<!-- Set Big Daddy -->
+<div class="form-group">
+    <label for="bigDaddy">Set Big Daddy:</label>
+    <input type="text" id="bigDaddy" placeholder="Enter big daddy address">
+    <button onclick="setBigDaddy(document.getElementById('bigDaddy').value)">Submit</button>
+</div>
+
+<!-- Change Normal Percentage -->
+<div class="form-group">
+    <label for="normalPercentage">Change Normal Percentage:</label>
+    <input type="text" id="normalPercentage" placeholder="Enter new normal percentage">
+    <button onclick="changeNormalPercentage(document.getElementById('normalPercentage').value)">Submit</button>
+</div>
+
+<!-- Buy With Referral -->
+<div class="form-group">
+    <label for="referrer">Buy With Referral:</label>
+    <input type="text" id="referrer" placeholder="Enter referrer address">
+    <input type="text" id="paymentToken" placeholder="Enter payment token address">
+    <input type="text" id="amount" placeholder="Enter amount">
+    <button onclick="buyWithReferral(document.getElementById('referrer').value, document.getElementById('paymentToken').value, document.getElementById('amount').value)">Submit</button>
+</div>
+
+<!-- Generate Referral Link Special -->
+<div class="form-group">
+    <label for="referrer">Generate Referral Link Special:</label>
+    <input type="text" id="referrer" placeholder="Enter referrer address">
+    <input type="text" id="percentage" placeholder="Enter percentage">
+    <button onclick="generateReferralLinkSpecial(document.getElementById('referrer').value, document.getElementById('percentage').value)">Submit</button>
+</div>
+
+<!-- Change Referrer Percentage -->
+<div class="form-group">
+    <label for="referrer">Change Referrer Percentage:</label>
+    <input type="text" id="referrer" placeholder="Enter referrer address">
+    <input type="text" id="newPercentage" placeholder="Enter new percentage">
+    <button onclick="changeReferrerPercentage(document.getElementById('referrer').value, document.getElementById('newPercentage').value)">Submit</button>
+</div>
+
+<!-- Get Referrers With Percentage -->
+<div class="form-group">
+    <button onclick="getReferrersWithPercentage()">Get Referrers With Percentage</button>
+</div>
+
+<!-- Get All Buyers -->
+<div class="form-group">
+    <label for="fromIndex">Get All Buyers:</label>
+    <input type="text" id="fromIndex" placeholder="Enter from index">
+    <input type="text" id="toIndex" placeholder="Enter to index">
+    <button onclick="getAllBuyers(document.getElementById('fromIndex').value, document.getElementById('toIndex').value)">Submit</button>
+</div>
+
+<!-- Buyers Count -->
+<div class="form-group">
+    <button onclick="buyersCount()">Buyers Count</button>
+</div>
+
+<!-- Get Referral Tree -->
+<div class="form-group">
+    <label for="address">Get Referral Tree:</label>
+    <input type="text" id="address" placeholder="Enter address">
+    <input type="text" id="depth" placeholder="Enter depth">
+    <button onclick="getReferralTree(document.getElementById('address').value, document.getElementById('depth').value)">Submit</button>
+</div>
+
+<!-- Get Referrer Info -->
+<div class="form-group">
+    <label for="referrer">Get Referrer Info:</label>
+    <input type="text" id="referrer" placeholder="Enter referrer address">
+    <button onclick="getReferrerInfo(document.getElementById('referrer').value)">Submit</button>
+</div>
+
+<!-- Get Buyer Info -->
+<div class="form-group">
+    <label for="buyer">Get Buyer Info:</label>
+    <input type="text" id="buyer" placeholder="Enter buyer address">
+    <button onclick="getBuyerInfo(document.getElementById('buyer').value)">Submit</button>
+</div>
+
+<!-- Get Buyer Info For Referrer -->
+<div class="form-group">
+    <label for="referrer">Get Buyer Info For Referrer:</label>
+    <input type="text" id="referrer" placeholder="Enter referrer address">
+    <input type="text" id="buyer" placeholder="Enter buyer address">
+    <button onclick="getBuyerInfoForReferrer(document.getElementById('referrer').value, document.getElementById('buyer').value)">Submit</button>
+</div>
+
+<!-- Change Referrer -->
+<div class="form-group">
+    <label for="oldReferrer">Change Referrer:</label>
+    <input type="text" id="oldReferrer" placeholder="Enter old referrer address">
+    <input type="text" id="newReferrer" placeholder="Enter new referrer address">
+    <button onclick="changeReferrer(document.getElementById('oldReferrer').value, document.getElementById('newReferrer').value)">Submit</button>
+</div>
+
+<!-- Withdraw Tokens -->
+<div class="form-group">
+    <label for="token">Withdraw Tokens:</label>
+    <input type="text" id="token" placeholder="Enter token address">
+    <input type="text" id="to" placeholder="Enter to address">
+    <input type="text" id="amount" placeholder="Enter amount">
+    <button onclick="withdrawTokens(document.getElementById('token').value, document.getElementById('to').value, document.getElementById('amount').value)">Submit</button>
+</div>
+
+    </div>
+    <script src="main.js" type="module"></script>
+</body>
+</html>
