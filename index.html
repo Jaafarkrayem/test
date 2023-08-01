@@ -42,7 +42,7 @@
 <div class="form-group">
     <label for="isPaused">Set Paused:</label>
     <input type="text" id="isPaused" placeholder="Enter true or false">
-    <button onclick="setPaused(document.getElementById('isPaused').value)">Submit</button>
+    <button onclick="setPaused(document.getElementById('isPaused').value === 'true').catch(console.error)">Submit</button>
 </div>
 
 <!-- Change Owner -->
@@ -106,7 +106,7 @@
 <div class="form-group">
     <label for="bigDaddy">Set Big Daddy:</label>
     <input type="text" id="bigDaddy" placeholder="Enter big daddy address">
-    <button onclick="setBigDaddy(document.getElementById('bigDaddy').value)">Submit</button>
+    <button onclick="window.setbigDaddy(document.getElementById('bigDaddy').value).catch(console.error)">Submit</button>
 </div>
 
 <!-- Change Normal Percentage -->
@@ -116,21 +116,12 @@
     <button onclick="changeNormalPercentage(document.getElementById('normalPercentage').value)">Submit</button>
 </div>
 
-<!-- Buy With Referral -->
-<div class="form-group">
-    <label for="referrer">Buy With Referral:</label>
-    <input type="text" id="referrer" placeholder="Enter referrer address">
-    <input type="text" id="paymentToken" placeholder="Enter payment token address">
-    <input type="text" id="amount" placeholder="Enter amount">
-    <button onclick="buyWithReferral(document.getElementById('referrer').value, document.getElementById('paymentToken').value, document.getElementById('amount').value)">Submit</button>
-</div>
-
 <!-- Generate Referral Link Special -->
 <div class="form-group">
-    <label for="referrer">Generate Referral Link Special:</label>
-    <input type="text" id="referrer" placeholder="Enter referrer address">
-    <input type="text" id="percentage" placeholder="Enter percentage">
-    <button onclick="generateReferralLinkSpecial(document.getElementById('referrer').value, document.getElementById('percentage').value)">Submit</button>
+    <label for="referrerSpecial">Generate Referral Link Special:</label>
+    <input type="text" id="referrerSpecial" placeholder="Enter referrer address">
+    <input type="text" id="percentageSpecial" placeholder="Enter percentage">
+    <button onclick="window.generateReferralLinkSpecial(document.getElementById('referrerSpecial').value, document.getElementById('percentageSpecial').value)">Submit</button>
 </div>
 
 <!-- Change Referrer Percentage -->
