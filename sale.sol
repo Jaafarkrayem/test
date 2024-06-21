@@ -1,5 +1,5 @@
 /**
- *Submitted for verification at amoy.polygonscan.com on 2024-06-16
+ *Submitted for verification at polygonscan.com on 2024-06-20
 */
 
 // File: @openzeppelin/contracts/utils/Context.sol
@@ -457,7 +457,7 @@ interface AggregatorV3Interface {
     returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);
 }
 
-// File: contracts/presale/DNRsale.sol
+// File: contracts/DNRsale_final.sol
 
 
 
@@ -477,18 +477,17 @@ contract DNRSale is Ownable {
     // State variables
     address public DNRToken;
     uint256 public price = 7 * 1e16; // 0.07 USDT per token
-    // uint256 public oneMaticPrice;
     bool public saleActive = true; // Status of the token sale
     uint256 public totalInvestmentUSDT = 0; // Total USDT invested
     uint256 public totalInvestmentMatic = 0; // Total Matic invested
     uint256 public tokenSold = 0; // Total tokens sold
 
     // Instances of ERC20 tokens for USDT and DNR
-    IERC20 public usdt = IERC20(0xD526b258b3a044fA83d6C08447c6aede18546b7E); //(0xc2132D05D31c914a87C6611C10748AEb04B58e8F); // USDT token address on Polygon
-    IERC20 public dnr = IERC20(0xC9EC42E617e122Fa7fEFC6ff5d96b56667beC2C4);//(0x8a6ad635B6763C95299C4bc5E817F5c3d81947B4); // DNR token address
+    IERC20 public usdt = IERC20(0xc2132D05D31c914a87C6611C10748AEb04B58e8F); // USDT token address on Polygon
+    IERC20 public dnr = IERC20(0x8a6ad635B6763C95299C4bc5E817F5c3d81947B4); // DNR token address
 
     // Chainlink MATIC/USD price feed
-    AggregatorV3Interface internal priceFeed = AggregatorV3Interface(0x7bAC85A8a13A4BcD8abb3eB7d6b4d632c5a57676);
+    AggregatorV3Interface internal priceFeed = AggregatorV3Interface(0xAB594600376Ec9fD91F8e885dADF0CE036862dE0);
 
     // Mappings for investments and affiliate tracking
     mapping(address => uint256) public usdtInvestment; // Tracks USDT investments by address
@@ -560,24 +559,10 @@ contract DNRSale is Ownable {
     /**
      * @dev Updates the price of 1 Matic in USDT using Chainlink price feed.
      */
-    // function updateOneMaticPrice() public onlyOwner {
-    //     (, int256 _price,,,) = priceFeed.latestRoundData();
-    //     require(price > 0, "Invalid price");
-    //     oneMaticPrice = uint256(_price);
-    // }
-
-    /**
-     * @dev Updates the price of 1 Matic in USDT using Chainlink price feed.
-     */
-    // function getOneMaticPrice() public view returns(uint256){
-    //     (, int256 _price,,,) = priceFeed.latestRoundData();
-    //     require(price > 0, "Invalid price");
-    //     return uint256(_price);
-    // }
-
-    function getOneMaticPrice() public pure returns(uint256){
-        
-        return 61161545;
+    function getOneMaticPrice() public view returns(uint256){
+        (, int256 _price,,,) = priceFeed.latestRoundData();
+        require(price > 0, "Invalid price");
+        return uint256(_price);
     }
 
     /**
@@ -656,6 +641,7 @@ contract DNRSale is Ownable {
         uint256 usdToTokens = amount.mul(1e18).div(price);
         uint256 tokenAmountDecimalFixed = usdToTokens.mul(1e12);
 
+        require(tokenAmountDecimalFixed >= dnr.balanceOf(address(this)), "Contract balance");
         dnr.transfer(msg.sender, tokenAmountDecimalFixed);
         tokenSold = tokenSold.add(tokenAmountDecimalFixed);
         forwardFunds();
@@ -683,6 +669,7 @@ contract DNRSale is Ownable {
 
         require(usdToTokens > 0, "Token amount is zero");
 
+        require(usdToTokens >= dnr.balanceOf(address(this)), "Contract balance");
         dnr.transfer(msg.sender, usdToTokens);
         maticInvestment[msg.sender] = maticInvestment[msg.sender].add(msg.value);
         tokenSold = tokenSold.add(usdToTokens);
